@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppEvento.Views.CadastroEventoPage"
+             Title="Cadastro de Evento">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Cadastrar Novo Evento" 
+                   FontSize="24" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" />
+
+            <!-- Nome do Evento -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Nome do Evento:" FontAttributes="Bold" />
+                <Entry x:Name="txt_nome" Placeholder="Ex: Workshop de .NET MAUI" />
+            </VerticalStackLayout>
+
+            <!-- Local do Evento -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Local do Evento:" FontAttributes="Bold" />
+                <Entry x:Name="txt_local" Placeholder="Ex: Auditório Principal" />
+            </VerticalStackLayout>
+
+            <!-- Datas -->
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="10">
+                <VerticalStackLayout Grid.Column="0" Spacing="5">
+                    <Label Text="Data de Início:" FontAttributes="Bold" />
+                    <DatePicker x:Name="dtpck_inicio" Format="dd/MM/yyyy" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" Spacing="5">
+                    <Label Text="Data de Término:" FontAttributes="Bold" />
+                    <DatePicker x:Name="dtpck_termino" Format="dd/MM/yyyy" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- Número de Participantes -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="{Binding Source={x:Reference stp_participantes}, Path=Value, StringFormat='Número de Participantes: {0:F0}'}" 
+                       FontAttributes="Bold" />
+                <Stepper x:Name="stp_participantes" Minimum="1" Maximum="1000" Increment="1" Value="10" />
+            </VerticalStackLayout>
+
+            <!-- Custo por Participante -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Custo por Participante (R$):" FontAttributes="Bold" />
+                <Entry x:Name="txt_custo" Placeholder="150,00" Keyboard="Numeric" />
+            </VerticalStackLayout>
+
+            <!-- Botão Cadastrar -->
+            <Button Text="Cadastrar e Ver Resumo" 
+                    Clicked="Button_Clicked" 
+                    Margin="0,15,0,0" 
+                    CornerRadius="8" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
